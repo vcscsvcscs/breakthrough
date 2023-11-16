@@ -26,7 +26,7 @@ public class BreakthroughGUI {
     private final int INITIAL_BOARD_SIZE = 8;
 
     public BreakthroughGUI() {
-        frame = new JFrame("Color clicker");
+        frame = new JFrame("Breakthrough 1v1");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         boardGUI = new BoardGUI(INITIAL_BOARD_SIZE);
