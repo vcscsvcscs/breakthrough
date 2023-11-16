@@ -11,8 +11,10 @@ public class Board {
 
     private Field[][] board;
     private final int boardSize;
+    private Color currentPlayer;
 
     public Board(int boardSize) {
+        this.currentPlayer = Color.WHITE;
         this.boardSize = boardSize;
         board = new Field[this.boardSize][this.boardSize];
         for (int i = 0; i < this.boardSize; ++i) {
@@ -33,7 +35,7 @@ public class Board {
     }
 
     public boolean isOver() {
-        // TODO
+        //board[-1]
         return true;
     }
 
@@ -49,6 +51,14 @@ public class Board {
 
     public int getBoardSize() {
         return boardSize;
+    }
+
+    public Color getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public void setCurrentPlayer(Color currentPlayer) {
+        this.currentPlayer = currentPlayer;
     }
 
 }
