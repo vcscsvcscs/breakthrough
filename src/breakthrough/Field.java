@@ -30,6 +30,9 @@ public class Field {
 
     /**
      * Constructs a new {@code Field} with specified color and pawn.
+     * 
+     * @param color The color to set for the field.
+     * @param pawn The pawn standing on the field.
      */
     public Field(Color color,LazyPawn pawn) {
         this.color = color;
