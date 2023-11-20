@@ -33,6 +33,14 @@ public class BoardGUI {
         public FieldPanel(Point coordinates) {
             this.coordinates = coordinates;
             setBackground(board.get(coordinates.x, coordinates.y).getColor());
+            setLayout(new BorderLayout());
+
+            Field field = board.get(coordinates.x, coordinates.y);
+            if (field.getPawn() != null) {
+                JLabel pieceLabel = new JLabel(field.getPawn().getColor() == Color.WHITE ? "W" : "B");
+                pieceLabel.setHorizontalAlignment(JLabel.CENTER);
+                add(pieceLabel, BorderLayout.CENTER);
+            }
         }
     }
 
@@ -51,6 +59,27 @@ public class BoardGUI {
                 // You might need to add code here to update the GUI components based on the game state.
             }
             sourceCoordinates = null; // Reset the source coordinates after the move
+            refreshBoard(); // Refresh the board to update the visual representation
+        }
+    }
+
+    private void refreshBoard() {
+        for (Component component : boardPanel.getComponents()) {
+            if (component instanceof FieldPanel) {
+                FieldPanel fieldPanel = (FieldPanel) component;
+                Point coordinates = fieldPanel.coordinates;
+                fieldPanel.removeAll();
+
+                Field field = board.get(coordinates.x, coordinates.y);
+                if (field.getPawn() != null) {
+                    JLabel pieceLabel = new JLabel(field.getPawn().getColor() == Color.WHITE ? "W" : "B");
+                    pieceLabel.setHorizontalAlignment(JLabel.CENTER);
+                    fieldPanel.add(pieceLabel, BorderLayout.CENTER);
+                }
+
+                fieldPanel.revalidate();
+                fieldPanel.repaint();
+            }
         }
     }
 

@@ -1,12 +1,5 @@
 package breakthrough;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
@@ -31,7 +24,6 @@ public class BreakthroughGUI {
 
         boardGUI = new BoardGUI(INITIAL_BOARD_SIZE);
         frame.getContentPane().add(boardGUI.getBoardPanel(), BorderLayout.CENTER);
-        frame.getContentPane().add(boardGUI.getTimeLabel(), BorderLayout.SOUTH);
 
         JMenuBar menuBar = new JMenuBar();
         frame.setJMenuBar(menuBar);
@@ -45,11 +37,9 @@ public class BreakthroughGUI {
             newMenu.add(sizeMenuItem);
             sizeMenuItem.addActionListener((ActionEvent e) -> {
                 frame.getContentPane().remove(boardGUI.getBoardPanel());
-                frame.getContentPane().remove(boardGUI.getTimeLabel());
                 boardGUI = new BoardGUI(boardSize);
                 frame.getContentPane().add(boardGUI.getBoardPanel(),
                         BorderLayout.CENTER);
-                frame.getContentPane().add(boardGUI.getTimeLabel(), BorderLayout.SOUTH);
                 frame.pack();
             });
         }
