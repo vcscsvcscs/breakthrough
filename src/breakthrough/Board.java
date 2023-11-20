@@ -108,7 +108,7 @@ public class Board {
     }
 
     /**
-     * Moves a pawn from the source to the destination if the move is valid.
+     * Moves a pawn from the source to the destination if the move is valid. Changes gameover state if the right condition is hit.
      *
      * @param src The source coordinates of the pawn.
      * @param dst The destination coordinates for the pawn.
