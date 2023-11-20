@@ -39,7 +39,7 @@ public class Board {
                     board[i][j].setPawn(new LazyPawn(Color.WHITE));
                 }
                 // Set the color of each field based on its position
-                if (i + j % 2 == 0) {
+                if ((i + j) % 2 == 0) {
                     board[i][j].setColor(Color.BLACK);
                 } else {
                     board[i][j].setColor(Color.WHITE);

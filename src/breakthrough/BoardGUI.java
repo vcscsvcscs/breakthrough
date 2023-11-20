@@ -38,6 +38,7 @@ public class BoardGUI {
             Field field = board.get(coordinates.x, coordinates.y);
             if (field.getPawn() != null) {
                 JLabel pieceLabel = new JLabel(field.getPawn().getColor() == Color.WHITE ? "W" : "B");
+                pieceLabel.setForeground(Color.RED);
                 pieceLabel.setHorizontalAlignment(JLabel.CENTER);
                 add(pieceLabel, BorderLayout.CENTER);
             }
