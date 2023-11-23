@@ -7,10 +7,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-/**
- *
- * @author v5inla 
- */
 public class BreakthroughGUI {
 
     private JFrame frame;
@@ -31,6 +27,7 @@ public class BreakthroughGUI {
         menuBar.add(gameMenu);
         JMenu newMenu = new JMenu("New");
         gameMenu.add(newMenu);
+
         int[] boardSizes = new int[]{5, 10, 15, 20};
         for (int boardSize : boardSizes) {
             JMenuItem sizeMenuItem = new JMenuItem(boardSize + "x" + boardSize);
@@ -38,11 +35,11 @@ public class BreakthroughGUI {
             sizeMenuItem.addActionListener((ActionEvent e) -> {
                 frame.getContentPane().remove(boardGUI.getBoardPanel());
                 boardGUI = new BoardGUI(boardSize);
-                frame.getContentPane().add(boardGUI.getBoardPanel(),
-                        BorderLayout.CENTER);
-                frame.pack();
+                frame.getContentPane().add(boardGUI.getBoardPanel(), BorderLayout.CENTER);
+                frame.revalidate(); // Ensure proper layout after changing the board size
             });
         }
+
         JMenuItem exitMenuItem = new JMenuItem("Exit");
         gameMenu.add(exitMenuItem);
         exitMenuItem.addActionListener((ActionEvent ae) -> {
@@ -53,4 +50,10 @@ public class BreakthroughGUI {
         frame.setVisible(true);
     }
 
+    public static void main(String[] args) {
+        // Run the GUI on the event dispatch thread
+        javax.swing.SwingUtilities.invokeLater(() -> {
+            new BreakthroughGUI();
+        });
+    }
 }
