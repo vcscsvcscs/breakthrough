@@ -121,16 +121,16 @@ public class Board {
 
         // Check if the source pawn exists and belongs to the current player
         if (source.getPawn() != null && source.getPawn().getColor() == this.currentPlayer) {
-            if ((dst.y + 1 == src.y && this.currentPlayer == Color.WHITE)
-                    || (dst.y - 1 == src.y && this.currentPlayer == Color.BLACK)) {
+            if ((dst.x + 1 == src.x && this.currentPlayer == Color.WHITE)
+                    || (dst.x - 1 == src.x && this.currentPlayer == Color.BLACK)) {
                 // Check if the destination is empty and the move is valid
-                if (dst.x == src.x && destination.getPawn() == null) {
+                if (dst.y == src.y && destination.getPawn() == null) {
                     destination.setPawn(source.getPawn());
                     source.setPawn(null);
 
                     // Check if the move results in a win
-                    if ((dst.y == 0 && this.currentPlayer == Color.WHITE)
-                            || (dst.y == this.boardSize - 1 && this.currentPlayer == Color.BLACK)) {
+                    if ((dst.x == 0 && this.currentPlayer == Color.WHITE)
+                            || (dst.x == this.boardSize - 1 && this.currentPlayer == Color.BLACK)) {
                         this.over = true;
                     }
  
@@ -138,14 +138,14 @@ public class Board {
                 }
 
                 // Check if the destination has an opponent's pawn that can be captured
-                if (dst.x == src.x + 1 || dst.x == src.x - 1) {
+                if (dst.y == src.y + 1 || dst.y == src.y - 1) {
                     if (destination.getPawn() != null && destination.getPawn().getColor() != this.currentPlayer) {
                         destination.setPawn(source.getPawn());
                         source.setPawn(null);
 
                         // Check if the move results in a win
-                        if ((dst.y == 0 && this.currentPlayer == Color.WHITE)
-                                || (dst.y == this.boardSize - 1 && this.currentPlayer == Color.BLACK)) {
+                        if ((dst.x == 0 && this.currentPlayer == Color.WHITE)
+                                || (dst.x == this.boardSize - 1 && this.currentPlayer == Color.BLACK)) {
                             this.over = true;
                         }
 
