@@ -5,6 +5,11 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * Represents the graphical user interface for the Breakthrough game board.
+ *
+ * @author v5inla
+ */
 public class BoardGUI {
 
     private Board board;
@@ -13,12 +18,20 @@ public class BoardGUI {
 
     private Point sourceCoordinates; // To store the source coordinates of the drag
 
+    /**
+     * Constructs a new BoardGUI with the specified board size.
+     *
+     * @param boardSize The size of the game board.
+     */
     public BoardGUI(int boardSize) {
         boardPanel = new JPanel(new GridLayout(boardSize, boardSize));
         board = new Board(boardSize);
         initializeBoard();
     }
 
+    /**
+     * Initializes the game board by creating FieldPanel instances for each cell.
+     */
     private void initializeBoard() {
         for (int i = 0; i < board.getBoardSize(); i++) {
             for (int j = 0; j < board.getBoardSize(); j++) {
@@ -29,15 +42,28 @@ public class BoardGUI {
         }
     }
 
+    /**
+     * Represents a panel for an individual field on the game board.
+     */
     private class FieldPanel extends JPanel {
 
         private Point coordinates;
 
+        /**
+         * Displays a popup message declaring the winner of the game.
+         *
+         * @param winner The color of the winning player.
+         */
         private void showWinnerPopup(String winner) {
             String message = winner + " player wins!";
             JOptionPane.showMessageDialog(boardPanel, message, "Game Over", JOptionPane.INFORMATION_MESSAGE);
         }
 
+        /**
+         * Constructs a FieldPanel with the specified coordinates.
+         *
+         * @param coordinates The coordinates of the field.
+         */
         public FieldPanel(Point coordinates) {
             this.coordinates = coordinates;
             setBackground(board.get(coordinates.x, coordinates.y).getColor());
@@ -59,6 +85,9 @@ public class BoardGUI {
             });
         }
 
+        /**
+         * Handles the click event on a field, initiating move logic.
+         */
         private void handleFieldClick() {
             if (sourceCoordinates != null && !sourceCoordinates.equals(coordinates)) {
                 // Field is already selected, perform the move logic
@@ -90,6 +119,9 @@ public class BoardGUI {
         }
     }
 
+    /**
+     * Handles mouse events for piece clicks on the game board.
+     */
     private class PieceClickListener extends MouseAdapter {
 
         @Override
@@ -98,6 +130,9 @@ public class BoardGUI {
         }
     }
 
+    /**
+     * Refreshes the visual representation of the game board.
+     */
     private void refreshBoard() {
         for (Component component : boardPanel.getComponents()) {
             if (component instanceof FieldPanel) {
@@ -124,6 +159,12 @@ public class BoardGUI {
         boardPanel.repaint();
     }
 
+    /**
+     * Finds the JLabel component within a FieldPanel.
+     *
+     * @param fieldPanel The FieldPanel instance.
+     * @return The JLabel component found, or a default label if not found.
+     */
     private JLabel findPieceLabel(FieldPanel fieldPanel) {
         for (Component component : fieldPanel.getComponents()) {
             if (component instanceof JLabel) {
@@ -133,6 +174,11 @@ public class BoardGUI {
         return new JLabel(); // Return a default label if not found
     }
 
+    /**
+     * Gets the JPanel representing the game board.
+     *
+     * @return The JPanel representing the game board.
+     */
     public JPanel getBoardPanel() {
         return boardPanel;
     }
